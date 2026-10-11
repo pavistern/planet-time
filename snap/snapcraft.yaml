@@ -9,10 +9,18 @@ icon: data/io.github.pavistern.PlanetTime.svg
 website: https://github.com/pavistern/planet-time
 source-code: https://github.com/pavistern/planet-time
 issues: https://github.com/pavistern/planet-time/issues
+contact: https://github.com/pavistern/planet-time/issues
 
 platforms:
   amd64:
   arm64:
+
+slots:
+  # Lets the app own its D-Bus name (GApplication uses it for single instance and notification actions).
+  planet-time-dbus:
+    interface: dbus
+    bus: session
+    name: io.github.pavistern.PlanetTime
 
 apps:
   planet-time:
@@ -24,7 +32,12 @@ apps:
     autostart: io.github.pavistern.PlanetTime-alarms.desktop
     plugs:
       - network
+      # GIO asks the desktop portal for proxy settings before each request; the portal
+      # refuses unless the snap has network-status.
+      - network-status
       - audio-playback
+    slots:
+      - planet-time-dbus
 
 parts:
   planet-time:

@@ -41,6 +41,9 @@ class LiveClockApp(Adw.Application):
         # Fallbacks for globe/stopwatch/timer, which only some icon themes (e.g. Yaru) ship.
         Gtk.IconTheme.get_for_display(Gdk.Display.get_default()).add_search_path(
             os.path.join(os.path.dirname(__file__), "icons"))
+        gtk_settings = Gtk.Settings.get_default()
+        self._ensure_icon_theme(gtk_settings)
+        gtk_settings.connect("notify::gtk-icon-theme-name", self._ensure_icon_theme)
 
         self.store = Store()
         self.ticker = Ticker()
@@ -80,6 +83,24 @@ class LiveClockApp(Adw.Application):
             self.set_accels_for_action(f"app.page::{page}", [f"<Alt>{i}"])
 
         self._sync_background()
+
+    def _ensure_icon_theme(self, gtk_settings, _pspec=None):
+        """A snap only sees the icon themes shipped with it, so a newer theme the desktop uses
+        (e.g. Yaru-wartybrown-dark) can be missing and every themed icon breaks. Pick the closest one."""
+        name = gtk_settings.props.gtk_icon_theme_name
+        dirs = Gtk.IconTheme.get_for_display(Gdk.Display.get_default()).get_search_path()
+
+        def available(theme):
+            return any(os.path.exists(os.path.join(d, theme, "index.theme")) for d in dirs)
+
+        if not name or available(name):
+            return
+        base = name.split("-")[0]
+        candidates = [f"{base}-dark"] if name.lower().endswith("-dark") else []
+        for candidate in candidates + [base, "Adwaita"]:
+            if available(candidate):
+                gtk_settings.props.gtk_icon_theme_name = candidate
+                return
 
     def do_command_line(self, command_line):
         options = command_line.get_options_dict().end().unpack()
