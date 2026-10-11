@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.pavistern.PlanetTime</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+
+  <name>Planet Time</name>
+  <summary>World clocks, alarms, stopwatch and timers</summary>
+  <developer id="io.github.pavistern">
+    <name>Pavithran</name>
+  </developer>
+
+  <description>
+    <p>
+      Planet Time shows your day across the globe on one dashboard: the time in the cities you care
+      about, where they are on a world map, and what the weather and daylight are like there.
+    </p>
+    <ul>
+      <li>World clocks with time differences, current weather and day or night at a glance</li>
+      <li>A dotted world map with your cities and their time zones</li>
+      <li>A home card with a living sky or a photo of your city, the moon phase, sunrise and sunset</li>
+      <li>Alarms that repeat on chosen days, with snooze, and keep ringing when the window is closed</li>
+      <li>A stopwatch with laps</li>
+      <li>Several timers at once, with quick presets and optional labels</li>
+      <li>Follows your system light or dark style and 12 or 24 hour clock setting</li>
+    </ul>
+    <p>
+      Weather comes from Open-Meteo and can be turned off in Preferences. A photo of your home city
+      from Wikipedia is optional; the default living sky needs no internet.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">io.github.pavistern.PlanetTime.desktop</launchable>
+
+  <url type="homepage">https://github.com/pavistern/planet-time</url>
+  <url type="bugtracker">https://github.com/pavistern/planet-time/issues</url>
+  <url type="vcs-browser">https://github.com/pavistern/planet-time</url>
+
+  <screenshots>
+    <screenshot type="default">
+      <caption>The dashboard with world clocks, weather and the world map</caption>
+      <image>https://raw.githubusercontent.com/pavistern/planet-time/main/docs/screenshots/dashboard-light.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>The dashboard in dark mode</caption>
+      <image>https://raw.githubusercontent.com/pavistern/planet-time/main/docs/screenshots/dashboard-dark.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Alarms</caption>
+      <image>https://raw.githubusercontent.com/pavistern/planet-time/main/docs/screenshots/alarms.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Stopwatch</caption>
+      <image>https://raw.githubusercontent.com/pavistern/planet-time/main/docs/screenshots/stopwatch.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Timers</caption>
+      <image>https://raw.githubusercontent.com/pavistern/planet-time/main/docs/screenshots/timer.png</image>
+    </screenshot>
+  </screenshots>
+
+  <branding>
+    <color type="primary" scheme_preference="light">#f6dcc6</color>
+    <color type="primary" scheme_preference="dark">#3b2a20</color>
+  </branding>
+
+  <content_rating type="oars-1.1" />
+
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+  </supports>
+
+  <releases>
+    <release version="2.0" date="2026-10-11">
+      <description>
+        <p>First public release.</p>
+      </description>
+    </release>
+  </releases>
+</component>

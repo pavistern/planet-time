@@ -1,0 +1,65 @@
+name: planet-time
+title: Planet Time
+adopt-info: planet-time
+base: core24
+grade: stable
+confinement: strict
+license: MIT AND CC-BY-SA-3.0 AND CC-BY-3.0  # app is MIT; bundled alarm sounds are CC
+icon: data/io.github.pavistern.PlanetTime.svg
+website: https://github.com/pavistern/planet-time
+source-code: https://github.com/pavistern/planet-time
+issues: https://github.com/pavistern/planet-time/issues
+
+platforms:
+  amd64:
+  arm64:
+
+apps:
+  planet-time:
+    command: usr/bin/planet-time
+    extensions: [gnome]
+    desktop: usr/share/applications/io.github.pavistern.PlanetTime.desktop
+    common-id: io.github.pavistern.PlanetTime
+    # The app writes this file into $SNAP_USER_DATA/.config/autostart while alarms are on.
+    autostart: io.github.pavistern.PlanetTime-alarms.desktop
+    plugs:
+      - network
+      - audio-playback
+
+parts:
+  planet-time:
+    plugin: dump
+    source: .
+    stage-packages:
+      - sound-theme-freedesktop
+    override-build: |
+      APP_ID=io.github.pavistern.PlanetTime
+      SHARE="$CRAFT_PART_INSTALL/usr/share"
+
+      mkdir -p "$SHARE/planet-time"
+      cp app/live_clock.py "$SHARE/planet-time/"
+      cp -r app/liveclock "$SHARE/planet-time/"
+      find "$SHARE/planet-time" -name __pycache__ -prune -exec rm -rf {} +
+
+      install -Dm755 /dev/stdin "$CRAFT_PART_INSTALL/usr/bin/planet-time" <<'EOF'
+      #!/bin/sh
+      exec python3 "$SNAP/usr/share/planet-time/live_clock.py" "$@"
+      EOF
+
+      install -Dm644 "data/$APP_ID.svg" "$SHARE/icons/hicolor/scalable/apps/$APP_ID.svg"
+      install -Dm644 "data/$APP_ID.metainfo.xml" "$SHARE/metainfo/$APP_ID.metainfo.xml"
+      mkdir -p "$SHARE/applications"
+      sed "s|^Exec=.*|Exec=planet-time|" "data/$APP_ID.desktop.in" > "$SHARE/applications/$APP_ID.desktop"
+
+      craftctl set version="$(sed -n 's/^VERSION = "\(.*\)"/\1/p' app/liveclock/__init__.py)"
+    parse-info:
+      - usr/share/metainfo/io.github.pavistern.PlanetTime.metainfo.xml
+    prime:
+      - usr/bin/planet-time
+      - usr/share/planet-time
+      - usr/share/icons
+      - usr/share/metainfo
+      - usr/share/applications
+      - usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga
+      - usr/share/sounds/freedesktop/stereo/complete.oga
+      - usr/share/doc/sound-theme-freedesktop

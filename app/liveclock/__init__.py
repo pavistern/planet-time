@@ -9,6 +9,7 @@ gi.require_version("Graphene", "1.0")
 gi.require_version("Adw", "1")
 gi.require_version("GWeather", "4.0")
 
-APP_ID = "local.LiveClock"
+APP_ID = "io.github.pavistern.PlanetTime"
 APP_NAME = "Planet Time"
 VERSION = "2.0"
+WEBSITE = "https://github.com/pavistern/planet-time"

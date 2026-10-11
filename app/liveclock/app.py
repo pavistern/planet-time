@@ -6,7 +6,7 @@ from datetime import datetime
 
 from gi.repository import Adw, Gdk, Gio, GLib, Gtk
 
-from . import APP_ID, APP_NAME, VERSION, util
+from . import APP_ID, APP_NAME, VERSION, WEBSITE, util
 from .models import Alarms, Cities, Settings, Stopwatch, Store, Ticker, Timers
 from .photos import CityPhotos
 from .dialogs import PreferencesDialog
@@ -38,6 +38,9 @@ class LiveClockApp(Adw.Application):
         provider.load_from_path(os.path.join(os.path.dirname(__file__), "style.css"))
         Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), provider,
                                                   Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+        # Fallbacks for globe/stopwatch/timer, which only some icon themes (e.g. Yaru) ship.
+        Gtk.IconTheme.get_for_display(Gdk.Display.get_default()).add_search_path(
+            os.path.join(os.path.dirname(__file__), "icons"))
 
         self.store = Store()
         self.ticker = Ticker()
@@ -108,7 +111,8 @@ class LiveClockApp(Adw.Application):
     def _show_about(self):
         about = Adw.AboutDialog(application_name=APP_NAME, application_icon=APP_ID, version=VERSION,
                                 comments="World clocks, alarms, stopwatch and timers.",
-                                developer_name=APP_NAME)
+                                developer_name="Pavithran", license_type=Gtk.License.MIT_X11,
+                                website=WEBSITE, issue_url=f"{WEBSITE}/issues")
         about.present(self.props.active_window)
 
     # -- background --------------------------------------------------------
@@ -125,18 +129,31 @@ class LiveClockApp(Adw.Application):
         self._sync_autostart(self.alarms.any_enabled())
 
     def _sync_autostart(self, enabled):
+        # Inside a snap, XDG_CONFIG_HOME is the snap's own folder; snapd starts the app at login
+        # from there because snapcraft.yaml names this file under 'autostart'.
         path = os.path.join(GLib.get_user_config_dir(), "autostart", AUTOSTART_NAME)
-        if enabled and not os.path.exists(path):
-            script = os.path.abspath(sys.argv[0])
-            os.makedirs(os.path.dirname(path), exist_ok=True)
-            with open(path, "w", encoding="utf-8") as fh:
-                fh.write("[Desktop Entry]\nType=Application\n"
-                         f"Name={APP_NAME} (alarms)\n"
-                         f"Comment=Keeps {APP_NAME} alarms ringing after you log in\n"
-                         f"Exec=/usr/bin/python3 {script} --background\n"
-                         f"Icon={APP_ID}\nNoDisplay=true\nX-GNOME-Autostart-enabled=true\n")
-        elif not enabled and os.path.exists(path):
-            os.remove(path)
+        if not enabled:
+            if os.path.exists(path):
+                os.remove(path)
+            return
+        if os.environ.get("SNAP_NAME"):
+            command = os.environ["SNAP_NAME"]
+        else:
+            command = f"{sys.executable} {os.path.abspath(sys.argv[0])}"
+        entry = ("[Desktop Entry]\nType=Application\n"
+                 f"Name={APP_NAME} (alarms)\n"
+                 f"Comment=Keeps {APP_NAME} alarms ringing after you log in\n"
+                 f"Exec={command} --background\n"
+                 f"Icon={APP_ID}\nNoDisplay=true\nX-GNOME-Autostart-enabled=true\n")
+        try:
+            with open(path, encoding="utf-8") as fh:
+                if fh.read() == entry:
+                    return
+        except OSError:
+            pass
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(entry)
 
     # -- ringing -----------------------------------------------------------
 

@@ -9,7 +9,11 @@ import * as IconGrid from 'resource:///org/gnome/shell/ui/iconGrid.js';
 
 import {drawClockIcon} from './clockFace.js';
 
-const LIVE_APP_IDS = new Set(['local.LiveClock.desktop']);
+// The desktop file id when installed with install.sh, and the one snapd gives the snap.
+const LIVE_APP_IDS = new Set([
+    'io.github.pavistern.PlanetTime.desktop',
+    'planet-time_planet-time.desktop',
+]);
 
 const LiveClockIcon = GObject.registerClass(
 class LiveClockIcon extends St.DrawingArea {

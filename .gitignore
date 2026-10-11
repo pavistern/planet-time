@@ -16,3 +16,9 @@ weather.json
 photos/
 .env
 *.log
+
+# Snap build output
+*.snap
+parts/
+stage/
+prime/

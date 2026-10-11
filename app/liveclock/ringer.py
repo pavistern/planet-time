@@ -14,16 +14,26 @@ except (ImportError, ValueError):
     Gst = None
 
 SOUND_CANDIDATES = [
-    "/usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga",
-    "/usr/share/sounds/Yaru/stereo/alarm-clock-elapsed.oga",
-    "/usr/share/sounds/freedesktop/stereo/complete.oga",
+    "sounds/freedesktop/stereo/alarm-clock-elapsed.oga",
+    "sounds/Yaru/stereo/alarm-clock-elapsed.oga",
+    "sounds/freedesktop/stereo/complete.oga",
 ]
+
+
+def find_sound():
+    # Searches the XDG data dirs rather than /usr/share so a snap finds the sound it bundles.
+    for name in SOUND_CANDIDATES:
+        for data_dir in GLib.get_system_data_dirs():
+            path = os.path.join(data_dir, name)
+            if os.path.exists(path):
+                return path
+    return None
 
 
 class Ringer:
     def __init__(self):
         self._player = None
-        sound = next((path for path in SOUND_CANDIDATES if os.path.exists(path)), None)
+        sound = find_sound()
         if Gst is None or sound is None:
             return
         self._player = Gst.ElementFactory.make("playbin", "live-clock-ringer")

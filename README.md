@@ -70,6 +70,13 @@ python3 app/live_clock.py
 - The "City photo" background downloads your home city's photo from Wikipedia and caches it in `~/.cache/live-clock/`. The default "living sky" background makes no network requests.
 - Settings and alarms are stored locally in `~/.config/live-clock/state.json`.
 
+## Credits
+
+- Map: land outline from [Natural Earth](https://www.naturalearthdata.com/) (public domain).
+- City photos: from Wikipedia and Wikimedia Commons; each photo's author and license are shown on the home card.
+- Weather: [Open-Meteo](https://open-meteo.com/).
+- The snap package bundles alarm sounds from the [freedesktop sound theme](https://gitlab.freedesktop.org/xdg/xdg-sound-theme): "alarm-clock-elapsed" by Tim/corsica_s (CC BY-SA 3.0) and "complete" by Dr. Richard Boulanger et al. (CC BY 3.0).
+
 ## Project layout
 
 ```
@@ -78,4 +85,5 @@ extension/    GNOME Shell extension for the live dock icon
 data/         app icon and desktop launcher template
 install.sh    per-user installer
 docs/         screenshots
+snap/         Snap package recipe (snapcraft.yaml)
 ```

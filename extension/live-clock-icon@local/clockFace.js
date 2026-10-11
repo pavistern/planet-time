@@ -42,7 +42,7 @@ function numeralsSurface(size) {
     return numeralCache.get(pixels);
 }
 
-// Draws the Planet Time app icon (same design as local.LiveClock.svg, a 128x128 grid):
+// Draws the Planet Time app icon (same design as io.github.pavistern.PlanetTime.svg, a 128x128 grid):
 // a dark rounded-square clock with hands set to `now` (a GLib.DateTime).
 export function drawClockIcon(cr, size, now) {
     const scale = size / 128;
