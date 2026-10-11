@@ -1,0 +1,7 @@
+{
+  "uuid": "live-clock-icon@local",
+  "name": "Planet Time Icon",
+  "description": "Makes the Planet Time app icon show the current time in the dock, app grid and app switcher.",
+  "shell-version": ["50"],
+  "version": 1
+}

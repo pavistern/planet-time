@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Editors and OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# Never commit personal app data, secrets or logs
+state.json
+weather.json
+photos/
+.env
+*.log

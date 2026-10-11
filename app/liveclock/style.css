@@ -1,0 +1,811 @@
+/* Planet Time — warm dashboard theme. Tokens switch on window.dark (follows the system style). */
+
+window.liveclock {
+  --lc-ink: #1d1a17;
+  --lc-ink-2: rgba(29, 26, 23, 0.62);
+  --lc-muted: rgba(29, 26, 23, 0.34);
+  --lc-glass: rgba(255, 255, 255, 0.46);
+  --lc-glass-strong: rgba(255, 255, 255, 0.72);
+  --lc-glass-hover: rgba(255, 255, 255, 0.9);
+  --lc-glass-border: rgba(255, 255, 255, 0.85);
+  --lc-shadow: rgba(120, 62, 18, 0.22);
+  --lc-hero-bg: #1d1a17;
+  --lc-hero-fg: #f7f1ea;
+  --lc-orange: #f4874b;
+  --lc-on-orange: #2b1508;
+  --lc-yellow: #efe94a;
+  --lc-on-yellow: #25230b;
+  --lc-primary-bg: #1d1a17;
+  --lc-primary-fg: #fbf6f1;
+  --lc-primary-hover: #3a332d;
+
+  --accent-bg-color: #f4874b;
+  --accent-fg-color: #2b1508;
+  --accent-color: #b54f14;
+
+  background-color: #f8eee5;
+  background-image: linear-gradient(118deg, #fcf7ec 0%, #faf0e8 34%, #f8e2d3 66%, #f3c4a6 100%);
+  color: var(--lc-ink);
+}
+
+window.liveclock.dark {
+  --lc-ink: #f6efe8;
+  --lc-ink-2: rgba(246, 239, 232, 0.66);
+  --lc-muted: rgba(246, 239, 232, 0.36);
+  --lc-glass: rgba(255, 255, 255, 0.05);
+  --lc-glass-strong: rgba(255, 255, 255, 0.09);
+  --lc-glass-hover: rgba(255, 255, 255, 0.14);
+  --lc-glass-border: rgba(255, 255, 255, 0.08);
+  --lc-shadow: rgba(0, 0, 0, 0.5);
+  --lc-hero-bg: #f3ebe2;
+  --lc-hero-fg: #1d1a17;
+  --lc-orange: #f08442;
+  --lc-on-orange: #1e0d03;
+  --lc-yellow: #e9df45;
+  --lc-on-yellow: #1f1d06;
+  --lc-primary-bg: #f6efe8;
+  --lc-primary-fg: #1d1a17;
+  --lc-primary-hover: #ffffff;
+
+  --accent-bg-color: #f08442;
+  --accent-fg-color: #1e0d03;
+  --accent-color: #f59a62;
+
+  background-color: #1a1614;
+  background-image: linear-gradient(118deg, #161311 0%, #1c1714 40%, #271c16 72%, #3b2417 100%);
+}
+
+/* ---- Header & navigation ------------------------------------------------ */
+
+.liveclock toolbarview,
+.liveclock .top-bar,
+.liveclock headerbar.lc-header {
+  background: none;
+  box-shadow: none;
+}
+
+.liveclock headerbar.lc-header {
+  min-height: 72px;
+  padding: 4px 14px 0 22px;
+  color: var(--lc-ink);
+}
+
+.brand-label {
+  font-weight: 700;
+  font-size: 12.5pt;
+  letter-spacing: -0.2px;
+}
+
+.nav-item {
+  min-height: 42px;
+  min-width: 42px;
+  padding: 0;
+  border-radius: 999px;
+  background-color: var(--lc-glass);
+  border: 1px solid var(--lc-glass-border);
+  color: var(--lc-ink);
+  box-shadow: 0 8px 18px -12px var(--lc-shadow);
+}
+
+.nav-item:hover {
+  background-color: var(--lc-glass-strong);
+}
+
+.nav-item:checked {
+  background-color: var(--lc-primary-bg);
+  color: var(--lc-primary-fg);
+  border-color: transparent;
+  padding: 0 20px 0 16px;
+}
+
+.nav-item:checked:hover {
+  background-color: var(--lc-primary-hover);
+}
+
+.narrow .nav-item:checked {
+  padding: 0;
+}
+
+.nav-label {
+  margin-left: 10px;
+  font-weight: 600;
+}
+
+.chip-button.large {
+  min-width: 46px;
+  min-height: 46px;
+}
+
+/* ---- Shared pieces ------------------------------------------------------ */
+
+.hero-title,
+.hero-subtitle {
+  font-size: 27pt;
+  font-weight: 300;
+  letter-spacing: -0.8px;
+}
+
+.hero-subtitle {
+  color: var(--lc-muted);
+}
+
+.lc-card {
+  background-color: var(--lc-glass);
+  border: 1px solid var(--lc-glass-border);
+  border-radius: 26px;
+  padding: 18px 20px;
+  box-shadow: 0 18px 40px -28px var(--lc-shadow);
+}
+
+.card-caption {
+  font-size: 11pt;
+  font-weight: 600;
+}
+
+.card-note {
+  font-size: 10pt;
+  color: var(--lc-ink-2);
+}
+
+.chip {
+  min-width: 38px;
+  min-height: 38px;
+  border-radius: 999px;
+  background-color: var(--lc-glass-strong);
+  border: 1px solid var(--lc-glass-border);
+  color: var(--lc-ink);
+}
+
+.chip-button {
+  min-width: 38px;
+  min-height: 38px;
+  padding: 0;
+  border-radius: 999px;
+  background-color: var(--lc-glass-strong);
+  border: 1px solid var(--lc-glass-border);
+  color: var(--lc-ink);
+  box-shadow: none;
+}
+
+.chip-button:hover {
+  background-color: var(--lc-glass-hover);
+}
+
+.chip-button.on-hero {
+  background-color: rgba(127, 127, 127, 0.18);
+  border-color: transparent;
+  color: var(--lc-hero-fg);
+}
+
+.chip-button.on-hero:hover {
+  background-color: rgba(127, 127, 127, 0.32);
+}
+
+.tag {
+  border-radius: 999px;
+  padding: 3px 11px;
+  font-size: 9.5pt;
+  font-weight: 700;
+  font-feature-settings: "tnum";
+}
+
+.tag-accent {
+  background-color: var(--lc-orange);
+  color: var(--lc-on-orange);
+}
+
+.tag-soft {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: inherit;
+}
+
+.lc-button {
+  border-radius: 999px;
+  min-height: 44px;
+  padding: 0 20px;
+  font-weight: 600;
+  background-color: var(--lc-glass-strong);
+  border: 1px solid var(--lc-glass-border);
+  color: var(--lc-ink);
+  box-shadow: 0 10px 22px -16px var(--lc-shadow);
+}
+
+.lc-button:hover {
+  background-color: var(--lc-glass-hover);
+}
+
+.lc-button.primary {
+  background-color: var(--lc-primary-bg);
+  color: var(--lc-primary-fg);
+  border-color: transparent;
+}
+
+.lc-button.primary:hover {
+  background-color: var(--lc-primary-hover);
+}
+
+.lc-button.large {
+  min-height: 54px;
+  padding: 0 28px;
+  font-size: 12pt;
+}
+
+.lc-button.round {
+  min-width: 52px;
+  min-height: 52px;
+  padding: 0;
+}
+
+.lc-button:disabled {
+  opacity: 0.4;
+}
+
+.liveclock flowboxchild {
+  padding: 0;
+  border-radius: 26px;
+  background: none;
+}
+
+.liveclock flowboxchild:hover,
+.liveclock flowboxchild:selected {
+  background: none;
+}
+
+.empty-icon {
+  -gtk-icon-size: 40px;
+  min-width: 96px;
+  min-height: 96px;
+  margin-bottom: 8px;
+  border-radius: 999px;
+  background-color: var(--lc-glass-strong);
+  border: 1px solid var(--lc-glass-border);
+  color: var(--lc-ink-2);
+}
+
+.empty-title {
+  font-size: 17pt;
+  font-weight: 500;
+}
+
+.empty-note {
+  color: var(--lc-ink-2);
+}
+
+/* ---- Dashboard ---------------------------------------------------------- */
+
+.hero-card {
+  border-radius: 30px;
+  min-height: 252px;
+  background-color: #1d1a17;
+  box-shadow: 0 26px 50px -30px rgba(30, 15, 5, 0.7);
+}
+
+.hero-content {
+  padding: 20px 20px 18px 24px;
+}
+
+.hero-card.sky-day {
+  color: #1d1a17;
+}
+
+.hero-card.sky-night,
+.hero-card.photo {
+  color: #f7f1ea;
+}
+
+.hero-city {
+  font-size: 12pt;
+  font-weight: 600;
+}
+
+.hero-digits {
+  font-size: 56pt;
+  font-weight: 200;
+  font-feature-settings: "tnum";
+  letter-spacing: -1px;
+  line-height: 0.95;
+}
+
+.hero-digits-dim {
+  opacity: 0.55;
+}
+
+/* The bottom row sits on the skyline or the photo's dark edge, so it is always light. */
+.hero-day,
+.hero-credit {
+  color: #f7f1ea;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+}
+
+.hero-day {
+  font-size: 10pt;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background-color: rgba(18, 14, 11, 0.38);
+  text-shadow: none;
+}
+
+.hero-credit {
+  font-size: 7.5pt;
+  opacity: 0.8;
+}
+
+.hero-info {
+  padding: 0;
+}
+
+.hero-card.sky-day .hero-info-row {
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.55);
+  -gtk-icon-shadow: 0 1px 2px rgba(255, 255, 255, 0.55);
+}
+
+.hero-card.sky-night .hero-info-row {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  -gtk-icon-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.hero-card.photo .hero-info-row {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+  -gtk-icon-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+.hero-info-row {
+  font-size: 10.5pt;
+  font-weight: 500;
+}
+
+.hero-card .chip-button.on-hero {
+  background-color: rgba(255, 255, 255, 0.28);
+  border-color: transparent;
+  color: inherit;
+}
+
+.hero-card.sky-night .chip-button.on-hero,
+.hero-card.photo .chip-button.on-hero {
+  background-color: rgba(255, 255, 255, 0.16);
+}
+
+.photo-scrim {
+  background-image: linear-gradient(90deg, rgba(18, 14, 11, 0.78) 0%, rgba(18, 14, 11, 0.4) 45%, rgba(18, 14, 11, 0.62) 100%),
+                    linear-gradient(0deg, rgba(18, 14, 11, 0.6) 0%, rgba(18, 14, 11, 0) 42%);
+}
+
+.city-card {
+  min-height: 124px;
+  padding: 16px 18px;
+}
+
+/* A · Lift: hover is read from the (unmoving) flowbox child, so the lifted card never flickers. */
+.city-card-wrap {
+  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.city-card {
+  transition: box-shadow 260ms cubic-bezier(0.2, 0.8, 0.2, 1), background-color 200ms ease, border-color 200ms ease;
+}
+
+.city-flow > flowboxchild:hover .city-card-wrap {
+  transform: translateY(-6px);
+}
+
+.city-flow > flowboxchild:hover .city-card {
+  background-color: var(--lc-glass-hover);
+  box-shadow: 0 28px 44px -24px var(--lc-shadow);
+}
+
+.city-card.focused {
+  border-color: var(--lc-ink);
+}
+
+.card-time {
+  font-size: 27pt;
+  font-weight: 300;
+  font-feature-settings: "tnum";
+  letter-spacing: -0.6px;
+}
+
+.card-meridiem {
+  font-size: 10.5pt;
+  font-weight: 600;
+  color: var(--lc-ink-2);
+}
+
+.remove-button {
+  opacity: 0;
+}
+
+.city-card-wrap:hover .remove-button {
+  opacity: 1;
+}
+
+.city-card-wrap:hover > .chip {
+  opacity: 0;
+}
+
+.add-city-card {
+  min-height: 124px;
+  border: 1.5px dashed var(--lc-muted);
+  background-color: transparent;
+  box-shadow: none;
+  color: var(--lc-ink-2);
+}
+
+flowboxchild:hover .add-city-card {
+  background-color: var(--lc-glass);
+  color: var(--lc-ink);
+}
+
+.add-city-icon {
+  -gtk-icon-size: 20px;
+}
+
+.focus-location {
+  margin-top: 4px;
+  color: var(--lc-ink);
+}
+
+.focus-name {
+  font-size: 11.5pt;
+  font-weight: 600;
+}
+
+.focus-note {
+  font-size: 11pt;
+  color: var(--lc-ink-2);
+}
+
+.big-time {
+  font-size: 92pt;
+  font-weight: 200;
+  font-feature-settings: "tnum";
+  letter-spacing: -3px;
+}
+
+.big-time-dim {
+  color: var(--lc-muted);
+}
+
+.big-meridiem {
+  font-size: 22pt;
+  font-weight: 300;
+  color: var(--lc-ink-2);
+  margin: 0 0 24px 12px;
+}
+
+.narrow .big-time {
+  font-size: 58pt;
+  letter-spacing: -2px;
+}
+
+.world-map {
+  color: var(--lc-ink);
+}
+
+.today-card,
+.sun-card {
+  min-height: 176px;
+  border-color: transparent;
+}
+
+.today-card {
+  background-color: var(--lc-orange);
+  color: var(--lc-on-orange);
+}
+
+.sun-card {
+  background-color: var(--lc-yellow);
+  color: var(--lc-on-yellow);
+}
+
+.today-card .chip,
+.sun-card .chip {
+  background-color: rgba(255, 255, 255, 0.34);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: inherit;
+}
+
+.today-card .card-note,
+.sun-card .card-note {
+  color: inherit;
+  opacity: 0.65;
+}
+
+.today-date {
+  font-size: 24pt;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+}
+
+.sun-time {
+  font-size: 19pt;
+  font-weight: 400;
+  font-feature-settings: "tnum";
+}
+
+.sun-arc {
+  color: var(--lc-on-yellow);
+}
+
+.rail-chip {
+  min-width: 46px;
+  min-height: 46px;
+  padding: 0;
+  border-radius: 999px;
+  background-color: var(--lc-glass);
+  border: 1px solid var(--lc-glass-border);
+  color: var(--lc-ink);
+  font-size: 9pt;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: none;
+}
+
+.rail-chip:hover {
+  background-color: var(--lc-glass-strong);
+}
+
+.rail-chip.selected {
+  min-width: 68px;
+  min-height: 68px;
+  font-size: 11.5pt;
+  background-color: var(--lc-glass-strong);
+  border: 1.5px solid var(--lc-ink);
+}
+
+.rail-arrow {
+  min-width: 34px;
+  min-height: 30px;
+  padding: 0;
+  border-radius: 999px;
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: var(--lc-ink);
+}
+
+.rail-arrow:hover {
+  background-color: var(--lc-glass);
+}
+
+.rail-arrow:disabled {
+  opacity: 0.25;
+}
+
+/* ---- Alarms ------------------------------------------------------------- */
+
+.alarm-row {
+  padding: 14px 18px 14px 24px;
+}
+
+.alarm-time {
+  font-size: 36pt;
+  font-weight: 200;
+  font-feature-settings: "tnum";
+  letter-spacing: -1px;
+}
+
+.alarm-meridiem {
+  font-size: 12pt;
+  font-weight: 600;
+  color: var(--lc-ink-2);
+}
+
+.alarm-row.disabled .alarm-time,
+.alarm-row.disabled .alarm-meridiem,
+.alarm-row.disabled .card-note {
+  opacity: 0.4;
+}
+
+.time-spin {
+  font-size: 34pt;
+  font-weight: 200;
+  font-feature-settings: "tnum";
+}
+
+.time-picker-colon {
+  font-size: 30pt;
+  font-weight: 200;
+  color: var(--lc-muted);
+}
+
+.section-caption {
+  font-size: 10pt;
+  font-weight: 700;
+  color: var(--lc-ink-2);
+  margin-bottom: -8px;
+}
+
+.day-toggle {
+  min-width: 42px;
+  min-height: 42px;
+  padding: 0;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.day-toggle:checked {
+  background-color: var(--lc-primary-bg);
+  color: var(--lc-primary-fg);
+}
+
+/* ---- Ringing ------------------------------------------------------------ */
+
+.ringing-icon {
+  -gtk-icon-size: 40px;
+  min-width: 92px;
+  min-height: 92px;
+  margin-bottom: 10px;
+  border-radius: 999px;
+  background-color: var(--lc-orange);
+  color: var(--lc-on-orange);
+}
+
+.ringing-headline {
+  font-size: 44pt;
+  font-weight: 200;
+  font-feature-settings: "tnum";
+}
+
+.ringing-detail {
+  font-size: 13pt;
+  color: var(--lc-ink-2);
+}
+
+/* ---- Stopwatch ---------------------------------------------------------- */
+
+.stopwatch-time {
+  font-size: 108pt;
+  font-weight: 200;
+  font-feature-settings: "tnum";
+  letter-spacing: -4px;
+}
+
+.narrow .stopwatch-time {
+  font-size: 62pt;
+  letter-spacing: -2px;
+}
+
+.lap-row {
+  padding: 12px 20px;
+  border-radius: 20px;
+}
+
+.lap-split,
+.lap-total {
+  font-size: 13pt;
+  font-feature-settings: "tnum";
+}
+
+.lap-total {
+  font-weight: 600;
+}
+
+/* ---- Timer -------------------------------------------------------------- */
+
+.timer-setup {
+  padding: 22px;
+}
+
+.preset-chip {
+  min-height: 36px;
+  padding: 0 6px;
+  border-radius: 999px;
+  font-size: 10pt;
+  font-weight: 600;
+  background-color: var(--lc-glass-strong);
+  border: 1px solid var(--lc-glass-border);
+  color: var(--lc-ink);
+  box-shadow: none;
+}
+
+.preset-chip:hover {
+  background-color: var(--lc-orange);
+  border-color: transparent;
+  color: var(--lc-on-orange);
+}
+
+.lc-entry {
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: 14px;
+  background-color: var(--lc-glass-strong);
+  border: 1px solid var(--lc-glass-border);
+}
+
+.timer-card {
+  padding: 18px;
+}
+
+.timer-remaining {
+  font-size: 30pt;
+  font-weight: 300;
+  font-feature-settings: "tnum";
+  letter-spacing: -0.8px;
+}
+
+.progress-ring {
+  color: var(--lc-ink);
+}
+
+.timer-card.done {
+  background-color: var(--lc-orange);
+  color: var(--lc-on-orange);
+  border-color: transparent;
+}
+
+.timer-card.done .card-note,
+.timer-card.done .progress-ring {
+  color: var(--lc-on-orange);
+}
+
+/* ---- City card details -------------------------------------------------- */
+
+.card-temp {
+  font-size: 19pt;
+  font-weight: 300;
+  font-feature-settings: "tnum";
+  color: var(--lc-ink-2);
+}
+
+.status-dot {
+  min-width: 8px;
+  min-height: 8px;
+  border-radius: 999px;
+  background-color: var(--lc-muted);
+}
+
+.status-dot.work {
+  background-color: #2ea56b;
+}
+
+.dark .status-dot.work {
+  background-color: #4cc285;
+}
+
+.status-dot.free {
+  background-color: var(--lc-orange);
+}
+
+.status-label {
+  font-size: 9.5pt;
+  font-weight: 600;
+  color: var(--lc-ink-2);
+}
+
+/* A MenuButton draws its hover state on its inner button, so the round chip look goes there. */
+menubutton.chip-button {
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+menubutton.chip-button > button {
+  min-width: 38px;
+  min-height: 38px;
+  padding: 0;
+  border-radius: 999px;
+  background-color: var(--lc-glass-strong);
+  border: 1px solid var(--lc-glass-border);
+  color: var(--lc-ink);
+  box-shadow: none;
+}
+
+menubutton.chip-button > button:hover,
+menubutton.chip-button > button:checked {
+  background-color: var(--lc-glass-hover);
+}
+
+/* Lift for city codes, matching the city cards. Hover is read from the slot, which never moves. */
+.rail-chip {
+  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+              background-color 200ms ease;
+}
+
+.rail-slot:hover > .rail-chip {
+  transform: translateY(-4px);
+  background-color: var(--lc-glass-hover);
+  box-shadow: 0 16px 24px -14px var(--lc-shadow);
+}

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Planet Time
+Comment=World clocks, alarms, stopwatch and timers
+Exec=/usr/bin/python3 @APP_DIR@/live_clock.py
+Icon=local.LiveClock
+Terminal=false
+Categories=Utility;Clock;GTK;
+Keywords=time;clock;world;alarm;timer;stopwatch;timezone;
+StartupNotify=true
