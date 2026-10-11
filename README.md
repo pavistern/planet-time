@@ -2,6 +2,8 @@
 
 A world clock dashboard for the GNOME desktop, with alarms, a stopwatch and timers. Built with Python, GTK 4 and libadwaita.
 
+![Planet Time dashboard](docs/screenshots/dashboard-light.png)
+
 ## Features
 
 - **Dashboard**: world clocks on a dotted world map, sunrise and sunset times, and a home card with a living sky (or a photo of your city), weather, moon phase and your next alarm.
@@ -9,6 +11,16 @@ A world clock dashboard for the GNOME desktop, with alarms, a stopwatch and time
 - **Alarms**: repeating alarms that still ring when the window is closed.
 - **Stopwatch** with laps, and **timers**.
 - **Live dock icon**: an optional GNOME Shell extension draws the current time on the app icon in the dock, app grid and app switcher.
+
+## Screenshots
+
+Follows the system light and dark style:
+
+![Planet Time dashboard in dark mode](docs/screenshots/dashboard-dark.png)
+
+| Alarms | Stopwatch | Timer |
+|---|---|---|
+| ![Alarms](docs/screenshots/alarms.png) | ![Stopwatch](docs/screenshots/stopwatch.png) | ![Timer](docs/screenshots/timer.png) |
 
 ## Requirements
 
@@ -65,4 +77,5 @@ app/          the application (live_clock.py launcher + liveclock package)
 extension/    GNOME Shell extension for the live dock icon
 data/         app icon and desktop launcher template
 install.sh    per-user installer
+docs/         screenshots
 ```
